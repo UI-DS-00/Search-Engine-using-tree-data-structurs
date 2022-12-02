@@ -1,13 +1,16 @@
-﻿using aaaa;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tree;
+
 
 //Arthur : Kianoosh Vadaei
 //for UI_DS_4th_Mini_Project
@@ -35,7 +38,26 @@ namespace Search_Engine
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Tree A = new Tree();
+            Tree<int> A = new Tree<int>();
+
+            A.getRoot().val = 5;
+            A.getRoot().addChild(5);
+            A.getRoot().addChild(6,0);
+
+
+
+            using (FileStream zipToOpen = new FileStream(@"d:\b.zip", FileMode.Open))
+            {
+                using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
+                {
+                    ZipArchiveEntry readmeEntry = archive.CreateEntry("a.txt");
+                    using (StreamWriter writer = new StreamWriter(readmeEntry.Open()))
+                    {
+                        writer.WriteLine("Information about this package.");
+                        writer.WriteLine("========================");
+                    }
+                }
+            }
         }
 
 

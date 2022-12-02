@@ -9,3 +9,6 @@ D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engi
 D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engine\obj\Debug\Search Engine.csproj.CoreCompileInputs.cache
 D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engine\obj\Debug\Search Engine.exe
 D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engine\obj\Debug\Search Engine.pdb
+D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engine\bin\Debug\System.IO.Compression.FileSystem.dll
+D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engine\bin\Debug\System.Shim.dll
+D:\Private\uni\Coding\Search engine\project-4-Hsoonaik\Search Engine\Search Engine\obj\Debug\Search Engine.csproj.CopyComplete
