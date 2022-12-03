@@ -19,13 +19,10 @@ using Tree;
 
 namespace Search_Engine
 {
-    
-
-
     public partial class Form1 : Form
     {
 
-        List<Tree<char>> TreeList = new List<Tree<char>>();
+        List<MyTree> TreeList = new List<MyTree>();
 
 
         string delete_Punctuation(ZipArchiveEntry entry)
@@ -37,11 +34,10 @@ namespace Search_Engine
 
                 foreach (char c in s)
                 {
-                    if (!char.IsPunctuation(c) && c != '>')
+                    if (char.IsLetter(c))
                         result += c;
                     else
                         result += ' ';
-
                 }
 
                 for (int i = 0; i < result.Length - 1; i++)
@@ -67,33 +63,22 @@ namespace Search_Engine
                     {
                         Console.WriteLine(entry.Name);
                         string s = delete_Punctuation(entry);
-                        MessageBox.Show(s);
-                        add_to_tree(s);
+                        //MessageBox.Show(s);
+                        add_to_tree(s , entry.FullName);
                     }
                 }
             }
         }
-
-
-        void add_to_tree(string s)
+        void add_to_tree(string s , string FileName)
         {
-            List<string> q = s.Split().ToList();
-            Console.WriteLine(q[3]);
-
+            List<string> WordList = s.Split().ToList();
+            MyTree tmp = new MyTree();
+            foreach (string word in WordList)
+                tmp.insert(word);
+            tmp.FileName = FileName;
+            
+            TreeList.Add(tmp);
         }
-
-        //void WriteFiles(ZipArchiveEntry entry, string content)
-        //{
-        //    Console.WriteLine(content);
-        //    using (StreamWriter writer = new StreamWriter(entry.Open()))
-        //    {
-                
-        //        writer.Write("asd");
-        //    }                       
-
-        //}
-
-
         void ui_settings()
         {
             title.Location = new System.Drawing.Point((title_pnl.Width - title.Width) / 2, (title_pnl.Height - title.Height) / 2 + 20);
@@ -102,6 +87,17 @@ namespace Search_Engine
             srch_butt.Location = new System.Drawing.Point(srch_box.Width + srch_box.Location.X + 1, (srch_pnl.Height - srch_butt.Height) / 2);
             srch_butt.Cursor = Cursors.Hand;
         }
+
+        List<string> search(string w)
+        {
+            List<string> FileNames = new List<string>();
+            foreach (MyTree tree in TreeList)
+                if(tree.search(w))
+                    FileNames.Add(tree.FileName);
+            return FileNames;
+        }
+
+        private Label label;
         public Form1()
         {
             InitializeComponent();
@@ -110,11 +106,6 @@ namespace Search_Engine
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Tree<int> A = new Tree<int>();
-
-            A.getRoot().val = 5;
-            A.getRoot().addChild(5);
-            A.getRoot().addChild(6, 0);
             ReadFiles();
         }
 
@@ -129,9 +120,44 @@ namespace Search_Engine
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        
+
+
         #endregion
 
+        private void srch_box_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void srch_box_Enter(object sender, EventArgs e)
+        {
+            if (srch_box.Text == "Search")
+            {
+                srch_box.Clear();
+                srch_box.ForeColor = Color.Black;
+            }
+
+        }
+
+        private void srch_box_Leave(object sender, EventArgs e)
+        {
+            if(srch_box.Text == "")
+            {
+                srch_box.ForeColor = Color.Gray;
+                srch_box.Text = "Search";
+            }
+        }
+
+        private void srch_butt_Click(object sender, EventArgs e)
+        {
+            List<string> list = new List<string>();
+            list = search(srch_box.Text);
+            if (list.Count == 0)
+                MessageBox.Show("The word could not be found!" , "Result" , MessageBoxButtons.OK , MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("1");
+            }
+        }
     }
 }

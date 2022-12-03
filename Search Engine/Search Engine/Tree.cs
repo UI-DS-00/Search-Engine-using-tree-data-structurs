@@ -6,35 +6,73 @@ using System.Threading.Tasks;
 
 namespace Tree
 {
-    internal class Tree <T>
+    internal class MyTree
     {
-        Node<T> root = new Node<T>();
-        public Node<T> newNode(T key)
+        static readonly int ALPHABET_SIZE = 26;
+
+        internal class Node
         {
-            Node<T> temp = new Node<T>();
-            temp.val = key;
-            return temp;
+            public Node[] children = new Node[ALPHABET_SIZE];
+
+            // isEndOfWord is true if the node represents
+            // end of a word
+            public bool isEndOfWord;
+
+            public Node()
+            {
+                isEndOfWord = false;
+                for (int i = 0; i < ALPHABET_SIZE; i++)
+                    children[i] = null;
+            }
+        };
+
+
+        string _FileName;
+        public string FileName { get { return _FileName; } set { _FileName = value; } }
+        Node root = new Node();
+
+        public void insert(String key)
+        {
+            int length = key.Length;
+            int index;
+
+            Node tmp = root;
+
+            for (int i = 0; i < length; i++)
+            {
+                index = key[i] - 'a';
+                if (key[i] < 97)
+                    index += 32;
+                Console.WriteLine(key + "### " + index);
+                if (tmp.children[index] == null)
+                    tmp.children[index] = new Node();
+
+                tmp = tmp.children[index];
+            }
+
+            // mark last node as leaf
+            tmp.isEndOfWord = true;
         }
 
-        public Node<T> getRoot()
+        public bool search(String key)
         {
-            return this.root;
-        }
+            int length = key.Length;
+            int index;
+            Node tmp = root;
 
-        public Node<T> getParent(Node<T> p)
-        {
-            return p.parent;
-        }
-        public List<Node<T>> Children(Node<T> p)
-        {
-            return p.child;
-        }
-        public bool isRoot(Node<T> p)
-        {
-            return p.parent == null;
-        }
-        
+            for (int i = 0; i < length; i++)
+            {
+                index = key[i] - 'a';
+                if (key[i] < 97)
+                    index += 32;
+                if (tmp.children[index] == null)
+                    return false;
 
+                tmp = tmp.children[index];
+            }
+
+            return (tmp.isEndOfWord);
+        }
 
 
 

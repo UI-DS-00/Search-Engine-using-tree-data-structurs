@@ -106,11 +106,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Georgia", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title.Location = new System.Drawing.Point(68, 26);
+            this.title.Location = new System.Drawing.Point(38, 13);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(327, 49);
+            this.title.Size = new System.Drawing.Size(382, 49);
             this.title.TabIndex = 1;
-            this.title.Text = "G O O G O O L";
+            this.title.Text = "G U L U  G U L U";
             // 
             // title_pnl
             // 
@@ -124,12 +124,16 @@
             // srch_box
             // 
             this.srch_box.Font = new System.Drawing.Font("Calibri Light", 20F);
+            this.srch_box.ForeColor = System.Drawing.Color.Gray;
             this.srch_box.Location = new System.Drawing.Point(77, 26);
             this.srch_box.Name = "srch_box";
             this.srch_box.Size = new System.Drawing.Size(251, 48);
             this.srch_box.TabIndex = 3;
-            this.srch_box.Text = "TEST!";
+            this.srch_box.Text = "Search";
             this.srch_box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.srch_box.TextChanged += new System.EventHandler(this.srch_box_TextChanged);
+            this.srch_box.Enter += new System.EventHandler(this.srch_box_Enter);
+            this.srch_box.Leave += new System.EventHandler(this.srch_box_Leave);
             // 
             // srch_pnl
             // 
@@ -155,6 +159,7 @@
             this.srch_butt.Size = new System.Drawing.Size(55, 31);
             this.srch_butt.TabIndex = 5;
             this.srch_butt.UseVisualStyleBackColor = true;
+            this.srch_butt.Click += new System.EventHandler(this.srch_butt_Click);
             // 
             // Form1
             // 
