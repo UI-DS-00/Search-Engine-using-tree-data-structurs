@@ -59,12 +59,16 @@ namespace Search_Engine
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
+                    int tmpI = 1;
                     foreach (ZipArchiveEntry entry in archive.Entries)
                     {
-                        Console.WriteLine(entry.Name);
+                        //Console.WriteLine(entry.Name);
                         string s = delete_Punctuation(entry);
                         //MessageBox.Show(s);
                         add_to_tree(s , entry.FullName);
+                        Console.WriteLine(tmpI + " " + entry.Name + " Done!");
+
+                        tmpI++;
                     }
                 }
             }
@@ -91,9 +95,16 @@ namespace Search_Engine
         List<string> search(string w)
         {
             List<string> FileNames = new List<string>();
-            foreach (MyTree tree in TreeList)
-                if(tree.search(w))
-                    FileNames.Add(tree.FileName);
+            try
+            {
+                foreach (MyTree tree in TreeList)
+                    if (tree.search(w))
+                        FileNames.Add(tree.FileName);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
             return FileNames;
         }
 
@@ -107,6 +118,8 @@ namespace Search_Engine
         private void Form1_Load(object sender, EventArgs e)
         {
             ReadFiles();
+            tmp_lbl.Select();
+            tmp_lbl.Focus();
         }
 
 
@@ -152,12 +165,85 @@ namespace Search_Engine
         {
             List<string> list = new List<string>();
             list = search(srch_box.Text);
-            if (list.Count == 0)
-                MessageBox.Show("The word could not be found!" , "Result" , MessageBoxButtons.OK , MessageBoxIcon.Error);
+            //Console.WriteLine(list[5]);
+            if(srch_box.Text != "Search" && srch_box.Text != "")
+            {
+                if (list == null)
+                {
+                    MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (list.Count == 0)
+                    MessageBox.Show("The word could not be found !", "Result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    string tmp = String.Join("  ,  ", list);
+                    MessageBox.Show("These files contains Entered word :\n" + tmp,
+                        "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
             else
             {
-                MessageBox.Show("1");
+                MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+
+
+            srch_box.Text = "Search";
+            srch_box.ForeColor = Color.Gray;
+            tmp_lbl.Select();
+            tmp_lbl.Focus();
+
+        }
+
+        private void advncd_opt_lbl_Click(object sender, EventArgs e)
+        {
+            //advncd_opt_lbl.Hide();
+            if (this.Height <= 250)
+            {
+                this.Size = new Size(this.Width, this.Height + 100);
+                advncd_opt_lbl.Text = "Less Option";
+            }
+            else
+            {
+                this.Size = new Size(this.Width, this.Height - 100);
+                advncd_opt_lbl.Text = "Advanced Option";
+            }
+
+        }
+
+        private void srch_pnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void mximize_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void title_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tmp_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void title_pnl_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Tree
                 index = key[i] - 'a';
                 if (key[i] < 97)
                     index += 32;
-                Console.WriteLine(key + "### " + index);
+                //Console.WriteLine(key + "### " + index);
                 if (tmp.children[index] == null)
                     tmp.children[index] = new Node();
 

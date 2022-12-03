@@ -38,9 +38,13 @@
             this.srch_box = new System.Windows.Forms.TextBox();
             this.srch_pnl = new System.Windows.Forms.Panel();
             this.srch_butt = new System.Windows.Forms.Button();
+            this.tmp_lbl = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.advncd_opt_lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.title_pnl.SuspendLayout();
             this.srch_pnl.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,6 +58,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 40);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button3
             // 
@@ -98,6 +103,7 @@
             this.mximize.TabIndex = 6;
             this.mximize.Text = "□";
             this.mximize.UseVisualStyleBackColor = true;
+            this.mximize.Click += new System.EventHandler(this.mximize_Click);
             // 
             // title
             // 
@@ -111,15 +117,18 @@
             this.title.Size = new System.Drawing.Size(382, 49);
             this.title.TabIndex = 1;
             this.title.Text = "G U L U  G U L U";
+            this.title.Click += new System.EventHandler(this.title_Click);
             // 
             // title_pnl
             // 
+            this.title_pnl.Controls.Add(this.tmp_lbl);
             this.title_pnl.Controls.Add(this.title);
             this.title_pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.title_pnl.Location = new System.Drawing.Point(0, 40);
             this.title_pnl.Name = "title_pnl";
             this.title_pnl.Size = new System.Drawing.Size(450, 98);
             this.title_pnl.TabIndex = 2;
+            this.title_pnl.Paint += new System.Windows.Forms.PaintEventHandler(this.title_pnl_Paint);
             // 
             // srch_box
             // 
@@ -144,6 +153,7 @@
             this.srch_pnl.Name = "srch_pnl";
             this.srch_pnl.Size = new System.Drawing.Size(450, 87);
             this.srch_pnl.TabIndex = 4;
+            this.srch_pnl.Paint += new System.Windows.Forms.PaintEventHandler(this.srch_pnl_Paint);
             // 
             // srch_butt
             // 
@@ -161,11 +171,46 @@
             this.srch_butt.UseVisualStyleBackColor = true;
             this.srch_butt.Click += new System.EventHandler(this.srch_butt_Click);
             // 
+            // tmp_lbl
+            // 
+            this.tmp_lbl.AutoSize = true;
+            this.tmp_lbl.Location = new System.Drawing.Point(3, 13);
+            this.tmp_lbl.Name = "tmp_lbl";
+            this.tmp_lbl.Size = new System.Drawing.Size(45, 16);
+            this.tmp_lbl.TabIndex = 2;
+            this.tmp_lbl.Text = "Select";
+            this.tmp_lbl.Visible = false;
+            this.tmp_lbl.Click += new System.EventHandler(this.tmp_lbl_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.advncd_opt_lbl);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 224);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(450, 21);
+            this.panel2.TabIndex = 5;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // advncd_opt_lbl
+            // 
+            this.advncd_opt_lbl.AutoSize = true;
+            this.advncd_opt_lbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.advncd_opt_lbl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.advncd_opt_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(120)))));
+            this.advncd_opt_lbl.Location = new System.Drawing.Point(332, 0);
+            this.advncd_opt_lbl.Name = "advncd_opt_lbl";
+            this.advncd_opt_lbl.Size = new System.Drawing.Size(118, 16);
+            this.advncd_opt_lbl.TabIndex = 4;
+            this.advncd_opt_lbl.Text = "Advanced Options";
+            this.advncd_opt_lbl.Click += new System.EventHandler(this.advncd_opt_lbl_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 244);
+            this.ClientSize = new System.Drawing.Size(450, 245);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.srch_pnl);
             this.Controls.Add(this.title_pnl);
             this.Controls.Add(this.panel1);
@@ -179,6 +224,8 @@
             this.title_pnl.PerformLayout();
             this.srch_pnl.ResumeLayout(false);
             this.srch_pnl.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -194,6 +241,9 @@
         private System.Windows.Forms.TextBox srch_box;
         private System.Windows.Forms.Panel srch_pnl;
         private System.Windows.Forms.Button srch_butt;
+        private System.Windows.Forms.Label tmp_lbl;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label advncd_opt_lbl;
     }
 }
 
