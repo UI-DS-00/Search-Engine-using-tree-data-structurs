@@ -108,7 +108,68 @@ namespace Search_Engine
             return FileNames;
         }
 
-        private Label label;
+
+        string search_result(string In)
+        {
+            List<string> list = new List<string>();
+            list = search(In);
+            if (list == null)
+            {
+
+                //MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "ex*";
+            }
+            else if (list.Count == 0)
+                return "null*";
+            //MessageBox.Show("The word could not be found !", "Result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                string tmp = String.Join("  ,  ", list);
+
+                return tmp;
+            }
+        }
+
+        string multiple_search_engine(string In)
+        {
+            List<string> words = In.Split().ToList();
+            List<string> files = new List<string>();
+            List<string> filesP = new List<string>();
+            List<string> filesM = new List<string>();
+
+            foreach (string word in words)
+            {
+                if (word[0] != '+' && word[0] != '-' && word[0] !=' ')
+                {
+                    files.Add(search_result(word));
+                }
+                else if(word[0] == '+')
+                {
+                    string tmp = word.Remove(0);
+                    //Console.WriteLine(tmp);
+                    filesP.Add(search_result(tmp));
+                }
+                else if (word[0] == '-')
+                {
+                    string tmp = word.Remove(0);
+                    //Console.WriteLine(tmp);
+                    filesM.Add(search_result(tmp));
+
+                }
+            }
+
+            string result = files[0];
+            foreach (string file in files)
+                result.Intersect(file);
+            foreach (string file in filesP)
+                result.Union(file);
+            foreach (string file in filesM)
+                result.Except(file);
+
+            return result;
+
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -163,30 +224,47 @@ namespace Search_Engine
 
         private void srch_butt_Click(object sender, EventArgs e)
         {
-            List<string> list = new List<string>();
-            list = search(srch_box.Text);
+
             //Console.WriteLine(list[5]);
-            if(srch_box.Text != "Search" && srch_box.Text != "")
+            if (!srch_box.Text.Contains("+") && !srch_box.Text.Contains("-") && !srch_box.Text.Contains(" "))
             {
-                if (list == null)
+                if (srch_box.Text != "Search" && srch_box.Text != "")
                 {
-                    MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!srch_box.Text.Contains(" ") || !srch_box.Text.Contains("+") || !srch_box.Text.Contains("-"))
+                    {
+                        string tmp =  search_result(srch_box.Text);
+                        if(tmp == "ex*")
+                            MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else if(tmp == "null*")
+                            MessageBox.Show("The word could not be found !", "Result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else
+                        {
+                            MessageBox.Show("These files contains Entered word :\n" + tmp 
+                                ,"Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
                 }
-                else if (list.Count == 0)
-                    MessageBox.Show("The word could not be found !", "Result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
-                    string tmp = String.Join("  ,  ", list);
-                    MessageBox.Show("These files contains Entered word :\n" + tmp,
-                        "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (srch_box.Text != "Search" && srch_box.Text != "")
+                {
+                    string r = multiple_search_engine(srch_box.Text);
+                    MessageBox.Show("These files contains Entered word :\n" + r
+                        , "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Pleas Enter a valid value", "Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } 
+                
 
-            }
-
+            
 
             srch_box.Text = "Search";
             srch_box.ForeColor = Color.Gray;
@@ -200,12 +278,12 @@ namespace Search_Engine
             //advncd_opt_lbl.Hide();
             if (this.Height <= 250)
             {
-                this.Size = new Size(this.Width, this.Height + 100);
+                this.Size = new Size(this.Width, this.Height + 200);
                 advncd_opt_lbl.Text = "Less Option";
             }
             else
             {
-                this.Size = new Size(this.Width, this.Height - 100);
+                this.Size = new Size(this.Width, this.Height - 200);
                 advncd_opt_lbl.Text = "Advanced Option";
             }
 

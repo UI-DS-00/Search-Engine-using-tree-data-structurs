@@ -35,10 +35,10 @@
             this.mximize = new System.Windows.Forms.Button();
             this.title = new System.Windows.Forms.Label();
             this.title_pnl = new System.Windows.Forms.Panel();
+            this.tmp_lbl = new System.Windows.Forms.Label();
             this.srch_box = new System.Windows.Forms.TextBox();
             this.srch_pnl = new System.Windows.Forms.Panel();
             this.srch_butt = new System.Windows.Forms.Button();
-            this.tmp_lbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.advncd_opt_lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -130,6 +130,17 @@
             this.title_pnl.TabIndex = 2;
             this.title_pnl.Paint += new System.Windows.Forms.PaintEventHandler(this.title_pnl_Paint);
             // 
+            // tmp_lbl
+            // 
+            this.tmp_lbl.AutoSize = true;
+            this.tmp_lbl.Location = new System.Drawing.Point(3, 13);
+            this.tmp_lbl.Name = "tmp_lbl";
+            this.tmp_lbl.Size = new System.Drawing.Size(45, 16);
+            this.tmp_lbl.TabIndex = 2;
+            this.tmp_lbl.Text = "Select";
+            this.tmp_lbl.Visible = false;
+            this.tmp_lbl.Click += new System.EventHandler(this.tmp_lbl_Click);
+            // 
             // srch_box
             // 
             this.srch_box.Font = new System.Drawing.Font("Calibri Light", 20F);
@@ -170,17 +181,6 @@
             this.srch_butt.TabIndex = 5;
             this.srch_butt.UseVisualStyleBackColor = true;
             this.srch_butt.Click += new System.EventHandler(this.srch_butt_Click);
-            // 
-            // tmp_lbl
-            // 
-            this.tmp_lbl.AutoSize = true;
-            this.tmp_lbl.Location = new System.Drawing.Point(3, 13);
-            this.tmp_lbl.Name = "tmp_lbl";
-            this.tmp_lbl.Size = new System.Drawing.Size(45, 16);
-            this.tmp_lbl.TabIndex = 2;
-            this.tmp_lbl.Text = "Select";
-            this.tmp_lbl.Visible = false;
-            this.tmp_lbl.Click += new System.EventHandler(this.tmp_lbl_Click);
             // 
             // panel2
             // 
