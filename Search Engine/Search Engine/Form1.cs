@@ -139,33 +139,36 @@ namespace Search_Engine
 
             foreach (string word in words)
             {
+                //Console.WriteLine(word);
                 if (word[0] != '+' && word[0] != '-' && word[0] !=' ')
                 {
                     files.Add(search_result(word));
                 }
                 else if(word[0] == '+')
                 {
-                    string tmp = word.Remove(0);
+                    string tmp = word.Substring(1);
                     //Console.WriteLine(tmp);
                     filesP.Add(search_result(tmp));
                 }
                 else if (word[0] == '-')
                 {
-                    string tmp = word.Remove(0);
+                    string tmp = word.Substring(1);
                     //Console.WriteLine(tmp);
                     filesM.Add(search_result(tmp));
 
                 }
             }
 
-            string result = files[0];
+            string result = "";
             foreach (string file in files)
                 result.Intersect(file);
             foreach (string file in filesP)
                 result.Union(file);
             foreach (string file in filesM)
+            {
+                Console.WriteLine(">>> " + file + "\n" , result);
                 result.Except(file);
-
+            }
             return result;
 
         }
