@@ -136,6 +136,7 @@ namespace Search_Engine
             List<string> files = new List<string>();
             List<string> filesP = new List<string>();
             List<string> filesM = new List<string>();
+            List<string> diff = new List<string>();
 
             foreach (string word in words)
             {
@@ -159,16 +160,24 @@ namespace Search_Engine
                 }
             }
 
-            string result = "";
+            string result = files[0];
+            string resultP = "";
             foreach (string file in files)
                 result.Intersect(file);
             foreach (string file in filesP)
-                result.Union(file);
+                resultP.Union(file);
+            result.Intersect(resultP);
             foreach (string file in filesM)
             {
-                Console.WriteLine(">>> " + file + "\n" , result);
-                result.Except(file);
+                //Console.WriteLine(">>> " + file + "\n" , result);
+                IEnumerable<string> set1 = result.Split(' ').Distinct();
+                IEnumerable<string> set2 = file.Split(' ').Distinct();
+
+                diff = set1.Except(set2).ToList();
+
             }
+            var r = string.Join(" ", diff.ToArray());
+            Console.WriteLine(r);
             return result;
 
         }
@@ -257,7 +266,7 @@ namespace Search_Engine
                 if (srch_box.Text != "Search" && srch_box.Text != "")
                 {
                     string r = multiple_search_engine(srch_box.Text);
-                    MessageBox.Show("These files contains Entered word :\n" + r
+                    MessageBox.Show("These files contains Entered word :\n\n" + r
                         , "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -282,7 +291,6 @@ namespace Search_Engine
             if (this.Height <= 250)
             {
                 this.Size = new Size(this.Width, this.Height + 200);
-                advncd_opt_lbl.Text = "Less Option";
             }
             else
             {
