@@ -1,77 +1,77 @@
 <div dir='rtl' align="center">
-به نام پروردگار هدایت کننده به راه راست
+In the name of the Lord who guides to the right path
 
-  دانشگاه اصفهان
+   University of Esfahan
 
-  ساختمان داده – دکتر رمضانی 
+   Data Building - Dr. Ramezani
 
-  پاییز ۰۲-۰۱
+   Autumn 01-02
 
-  پروژه چهارم –  موتور جستجو 
+   The fourth project - search engine
 
 
-<img src="https://s24.picofile.com/file/8456084100/Picture44.png"  width="500"/>
+<img src="https://s24.picofile.com/file/8456084100/Picture44.png" width="500"/>
   
-  طراحان پروژه : امیرعلی گلی – محمدحسین دهقانی – محمد توکلی
+   Project designers: Amir Ali Goli - Mohammad Hossein Dehghani - Mohammad Tawakli
 </div>
 
-<div dir='rtl' align="justify">
+<div dir='ltr' align="justify">
   
-### مبحث : درخت 
-اهداف پروژه :
-+ کار با ساختمان داده درخت
-+ آشنایی با موتورهای جستجو و نحوه کار آن‌ها
+### Topic: Tree
+Project goals:
++ Work with the tree data structure
++ Familiarity with search engines and how they work
 
 
 
-در این پروژه قرار است با استفاده از ساختمان‌داده درخت یک موتور جستجو را شبیه‌سازی کنید.
+In this project, you are going to simulate a search engine using the tree data structure.
 
-## گام های پروژه
-### گام اول:
-در گام اول، از ریپازیتوری پروژه Clone بگیرید تا در سیستم خود داشته باشید.
-### گام دوم:
-ما فایل‌های اسنادی داریم که حاوی کلمات انگلیسی هستند. 
-https://star-academy.github.io/codestar-documents/assets/files/the-20-newsgroups-b28960092a8cf8e833bba736d4f3d433.zip  
+## Project steps
+### step one:
+In the first step, clone the project from the repository to have it in your system.
+### Second step:
+We have document files that contain English words.
+https://star-academy.github.io/codestar-documents/assets/files/the-20-newsgroups-b28960092a8cf8e833bba736d4f3d433.zip
 
-اسناد داده شده را بخوانید و به نحوی ویرایش کنید که فاقد هرگونه علائم نگارشی بوده و کلمات آن با اسپیس از هم جدا شده باشد. (کاراکتر اسپیس جداکننده تمامی کلمات است.)
+Read and edit the given documents in such a way that there are no punctuation marks and the words are separated by spaces. (The space character separates all words.)
 
 
-### گام سوم :
-  درخت زیر را مشاهده کنید.
+### The third step:
+   See the tree below.
   
-<img src="https://s24.picofile.com/file/8456084134/Picture45.png"  width="500"/>
+<img src="https://s24.picofile.com/file/8456084134/Picture45.png" width="500"/>
 
-در واقع در این درخت، حروف تشکیل دهنده کلمات متن داده شده را روی یال ها به گونه ای پخش می‌کنیم که با پیمایش از ریشه درخت به سمت برگ ها، با رسیدن به هر برگ، مجموعه حروف پیموده شده یکی از کلماتی است که در متن وجود دارد. با استفاده از این روش برای پیدا کردن یک کلمه با طول m در یک متن با طول n به جای اینکه پیچیدگی زمانی از مرتبه O(n) باشد، مرتبه زمانی ما برابر O(m) خواهد بود.
-همچنین در هر برگ لیست نام اسنادی که کلمه موجود در برگ، در آن‌ها بوده است نیز قرار دارد تا هنگام پیمایش درخت برای سرچ کلمه نام اسناد را دسترسی داشته باشیم.
-برنامه شما باید برای تمامی متن‌های داده شده یک درخت واحد مشابه درخت بالا تولید کرده که عملیات‌های زیر را پشتیبانی کند:
+In fact, in this tree, we spread the letters of the words of the given text on the edges in such a way that by scrolling from the root of the tree to the leaves, upon reaching each leaf, the set of letters that are scrolled is one of the words in the text. There is. Using this method to find a word of length m in a text of length n instead of the time complexity of the order of O(n), our time order will be equal to O(m).
+Also, in each sheet, there is a list of the names of the documents in which the word in the sheet was, so that we can access the names of the documents when navigating the tree to search for the word.
+Your program should generate a single tree similar to the one above for all given text that supports the following operations:
 
--	بررسی وجود یا عدم وجود یک کلمه در متن‌های داده شده
--	سرچ کلمه و تعیین نام  اسناد حاوی آن کلمه ( یعنی کلمه مورد نظر را در کنسول یا سرچ باکس وارد میکند و شماره تمامی اسنادی که آن کلمه در آن‌‌ها وجود دارد در خروجی داده شود.)
--	پشتیبانی از عبارات شرطی:
-برای مثال داکیومنت هایی که را پیدا کنیم که حتماً شامل عبارات get و help و همچنین حداقل یکی از عبارات illness و disease باشند و شامل عبارت cough نباشند.
+- Checking the presence or absence of a word in the given texts
+- Search for a word and determine the name of the documents containing that word (that is, enter the desired word in the console or search box and the number of all the documents that contain that word will be output.)
+- Support for conditional expressions:
+For example, we need to find documents that must include the terms get and help, as well as at least one of the terms illness and disease and do not include the term cough.
 
 get help +illness +disease -cough
 
--	توجه کنید برای این پروژه حق استفاده از hashMap و مانند آن را ندارید.
--	توجه کنید عملیات سرچ شما باید با استفاده از یک درخت ساخته شده انجام شود.
-- دقت کنید ساختمان داده درخت را باید خودتان پیاده‌سازی کنید و حق استفاده از درخت‌های آماده را ندارید. همچنین درخت شما باید عملیات افزودن، حذف کردن، بروزرسانی  جستجوی نود‌ها را داشته باشد.
+- Note that you do not have the right to use hashMap and the like for this project.
+- Note that your search operation must be done using a built tree.
+- Please note that you must implement the tree data structure yourself and you do not have the right to use ready-made trees. Also, your tree should have add, delete, update node search operations.
 
-### گام چهارم : 
- در نهایت یک رابط کاربری (‌ کنسولی یا گرافیکی) طراحی کرده که یک رشته ورودی از کلماتی که قرار است سرچ کند دریافت کرده و پاسخ های مورد نظر را بدهد. ( پاسخ‌های موردنظر در واقع لیست نام اسناد شامل کلمات می‌باشد.)
-
-
-
-### بخش امتیازی:
-•	در صورت نبود یک کلمه در تمام متون، کلمات مشابه با یک اختلاف( تغییر در حروف، کم و زیاد شدن تعداد حروف)  را نشان داده و سپس سرچ کند.
+### Fourth step:
+  Finally, he designed a user interface (console or graphic) that receives an input string of words to be searched and gives the desired answers. (The desired answers are actually a list of document names containing words.)
 
 
-## نکات تکمیلی :
-+ این پروژه بصورت تک نفری باید پیاده سازی شود.
-+ بستر پیاده سازی پروژه روی گیت‌هاب می‌باشد.
-+ سعی کنید هریک از بخش‌ها را در یک کامیت جداگانه انجام دهید.
-+ رعایت اصول کدنویسی تمیز بخش بسیار زیادی از نمره را به خود اختصاص می‌دهد و درصورتی که کد کاملا به شکل غیراصولی پیاده سازی شده باشد. تحویل گرفته نمی‌شود.
-+ استفاده از هر زبان، فریمورک و رابط‌های گرافیکی کاملا آزاد است.
-+ به افرادی که از تکلنولوژی‌های جدید استفاده کنند، توکن تمدید اضافه‌تر داده خواهد شد.
+
+### Bonus section:
+• If there is no word in all the texts, show the similar words with a difference (change in letters, decrease and increase in the number of letters) and then search.
+
+
+## Additional points:
++ This project must be implemented by a single person.
++ The project implementation platform is on GitHub.
++ Try to do each part in a separate commit.
++ Compliance with the principles of clean coding takes a large part of the grade and if the code is completely implemented in an unprincipled way. It will not be delivered.
++ The use of any language, framework and graphical interfaces is completely free.
++ People who use new technologies will be given an additional renewal token.
 
 
 
